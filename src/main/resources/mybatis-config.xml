@@ -17,5 +17,21 @@
     <mappers>
         <mapper resource="mapper/UserMapper.xml"/>
         <!--<mapper resource="mapper.UserMapper.xml" />-->
+
+
     </mappers>
+    <!--
+        <properties resource=""></properties>
+        <settings>
+            <setting name="" value=""/>
+        </settings>
+
+        <typeAliases></typeAliases>
+        <typeHandlers></typeHandlers>
+        <objectFactory type="" ></objectFactory>
+        <plugins>
+            <plugin interceptor=""></plugin>
+        </plugins>
+        <databaseIdProvider type="" ></databaseIdProvider>
+    -->
 </configuration>
