@@ -10,28 +10,21 @@ public class TestDemo {
 
     public static void main(String[] args) {
 
+
+        SqlSessionFactory sqlSessionFactory = SqlSessionFactoryUtil.getInstance();
+
+        SqlSession session = sqlSessionFactory.openSession();
         try {
-
-            SqlSessionFactory sqlSessionFactory = SqlSessionFactoryUtil.getFactory();
-            SqlSession session = sqlSessionFactory.openSession();
-
-
 //            User user = (User) session.selectOne("entity.User.SelectUser", 1);
-            try {
 
-                UserMapper userMapper = session.getMapper(UserMapper.class);
-                User user = userMapper.selectUser(1);
+            UserMapper userMapper = session.getMapper(UserMapper.class);
+            User user = userMapper.selectUser(1);
+            System.out.println(user.toString());
 
-                System.out.println(user.toString());
-            } finally {
-                session.close();
-            }
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            session.close();
         }
-
-
-
-
     }
 }

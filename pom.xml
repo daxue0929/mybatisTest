@@ -26,4 +26,18 @@
 
     </dependencies>
 
+    <build>
+        <!--把映射器的xml配置文件写在包里面,一直报错提示找不到路径,
+            idea不会编译src的java目录的xml文件
+        -->
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+
 </project>
