@@ -5,25 +5,16 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import util.SqlSessionFactoryUtil;
 
-import java.util.HashMap;
-
-public class TestDemo {
+public class Test3 {
 
     public static void main(String[] args) {
-
         SqlSessionFactory sqlSessionFactory = SqlSessionFactoryUtil.getInstance();
         SqlSession session = sqlSessionFactory.openSession();
-        try {
-            UserMapper userMapper = session.getMapper(UserMapper.class);
 
-            HashMap hashMap = userMapper.selectUser(1001);
+        //
+        UserMapper userMapper = session.getMapper(UserMapper.class);
 
-            System.out.println(hashMap.toString());
+        //测试博文列表的持久层
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
     }
 }
