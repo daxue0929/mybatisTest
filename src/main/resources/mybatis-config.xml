@@ -30,7 +30,6 @@
     </environments>
     <mappers>
         <mapper resource="mapper/UserMapper.xml"/>
-        <!--<mapper resource="mapper.UserMapper.xml" />-->
         <mapper resource="mapper/BlogArticleMapper.xml"/>
 
     </mappers>

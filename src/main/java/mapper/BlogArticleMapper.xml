@@ -7,4 +7,8 @@
     <select id="queryBlogArticleByUserId" parameterType="int" resultType="HashMap">
       SELECT * FROM blog_article WHERE user_id=#{userId}
     </select>
+
+    <select id="queryBlogArticleByUserIds" parameterType="HashMap" resultType="HashMap">
+        SELECT * from blog_article WHERE user_id=#{userId1} OR #{userId2}
+    </select>
 </mapper>
