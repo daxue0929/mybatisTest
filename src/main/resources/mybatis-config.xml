@@ -2,11 +2,26 @@
 <!DOCTYPE configuration
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
-
-
+<!--
+        元素顺序：
+        properties
+        settings
+        typeAliases
+        typeHandlers
+        objectFactory
+        objectWrapperFactory
+        plugins
+        environments?
+        databaseIdProvider
+        mappers
+    -->
 <configuration>
 
     <properties resource="db.properties"/>
+
+    <typeAliases>
+        <typeAlias alias="Comment" type="entity.Comment" />
+    </typeAliases>
 
     <environments default="development">
         <environment id="development">
@@ -31,7 +46,7 @@
     <mappers>
         <mapper resource="mapper/UserMapper.xml"/>
         <mapper resource="mapper/BlogArticleMapper.xml"/>
-
+        <mapper resource="mapper/CommentMapper.xml"/>
     </mappers>
 
 
