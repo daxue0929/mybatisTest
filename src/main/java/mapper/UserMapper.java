@@ -8,7 +8,7 @@ import java.util.HashMap;
 public interface UserMapper {
 
     //通过用户id来查询用户的信息
-    public HashMap selectUser(int id);
+    public User selectUser(int id);
 
     //通过用户名,查询该用户的信息
     public HashMap selectUserByUserName(String Name);

@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.UserMapper">
-    <select id="selectUser" parameterType="int" resultType="HashMap">
+    <select id="selectUser" parameterType="int" resultMap="user">
       select * from user where userId=#{id}
     </select>
 
@@ -18,6 +18,15 @@
         SELECT groupId FROM user_group WHERE groupName=#{groupName}
         )
     </select>
+
+    <resultMap id="user" type="entity.User">
+        <id property="userId" column="userId" />
+        <id property="userName" column="userName" />
+        <id property="userPassword" column="userPassword" />
+        <id property="addTime" column="addTime" />
+        <id property="groupId" column="groupId" />
+        <id property="glod" column="glod" />
+    </resultMap>
 
     <!--<resultMap id="UserResultMap" type="entity.User">-->
     <!--<result property="userId" column="userId"></result>-->

@@ -11,4 +11,13 @@
     <select id="queryBlogArticleByUserIds" parameterType="HashMap" resultType="HashMap">
         SELECT * from blog_article WHERE user_id=#{userId1} OR #{userId2}
     </select>
+
+
+    <resultMap id="blogArticle" type="entity.BlogArticle">
+        <id property="articleId" column="article_id" />
+        <id property="articleTitle" column="article_title" />
+        <id property="userId" column="user_id" />
+        <id property="articleContent" column="article_content" />
+        <id property="articleDate" column="article_date" />
+    </resultMap>
 </mapper>

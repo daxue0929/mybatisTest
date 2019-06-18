@@ -1,11 +1,10 @@
 package test1;
 
+import entity.User;
 import mapper.UserMapper;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import util.SqlSessionFactoryUtil;
-
-import java.util.HashMap;
 
 public class TestDemo {
 
@@ -16,7 +15,7 @@ public class TestDemo {
         try {
             UserMapper userMapper = session.getMapper(UserMapper.class);
 
-            HashMap hashMap = userMapper.selectUser(1001);
+            User hashMap = userMapper.selectUser(1001);
 
             System.out.println(hashMap.toString());
 

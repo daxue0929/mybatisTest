@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.UserInfoMapper">
+    <select id="selectUserAndBlogArticle" resultMap="UserAndBlogArticle">
+        SELECT u.userId, userName, userPassword, addTime, groupId, glod,
+        ba.article_id, article_title, user_id, article_content, article_date
+        from user u LEFT JOIN blog_article ba
+        on u.userId = ba.user_id
+    </select>
+
+
+    <resultMap id="getUserAndBlogArticle" type="dao.UserInfo">
+        <!--<association property="user" javaType="entity.User" resultMap="user" />-->
+        <!--<association property="blogArticle" javaType="entity.BlogArticle" resultMap="blogArticle" />-->
+
+        <association property="user" javaType="entity.User">
+            <id property="userId" column="userId" />
+            <id property="userName" column="userName" />
+            <id property="userPassword" column="userPassword" />
+            <id property="addTime" column="addTime" />
+            <id property="groupId" column="groupId" />
+            <id property="glod" column="glod" />
+        </association>
+        <association property="blogArticle" javaType="entity.BlogArticle">
+            <id property="articleId" column="article_id" />
+            <id property="articleTitle" column="article_title" />
+            <id property="userId" column="user_id" />
+            <id property="articleContent" column="article_content" />
+            <id property="articleDate" column="article_date" />
+        </association>
+    </resultMap>
+
+    <resultMap id="user" type="entity.User">
+        <id property="userId" column="userId" />
+        <id property="userName" column="userName" />
+        <id property="userPassword" column="userPassword" />
+        <id property="addTime" column="addTime" />
+        <id property="groupId" column="groupId" />
+        <id property="glod" column="glod" />
+    </resultMap>
+    <resultMap id="blogArticle" type="entity.BlogArticle">
+        <id property="articleId" column="article_id" />
+        <id property="articleTitle" column="article_title" />
+        <id property="userId" column="user_id" />
+        <id property="articleContent" column="article_content" />
+        <id property="articleDate" column="article_date" />
+    </resultMap>
+</mapper>
