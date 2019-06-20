@@ -47,6 +47,7 @@
         <mapper resource="mapper/UserMapper.xml"/>
         <mapper resource="mapper/BlogArticleMapper.xml"/>
         <mapper resource="mapper/CommentMapper.xml"/>
+        <mapper resource="mapper/UserInfoMapper.xml"/>
     </mappers>
 
 

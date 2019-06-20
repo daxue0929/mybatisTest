@@ -9,6 +9,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
 import util.SqlSessionFactoryUtil;
 
+import java.util.ArrayList;
+
 public class Test4 {
 
     @Test
@@ -17,9 +19,10 @@ public class Test4 {
         SqlSession session = sqlSessionFactory.openSession();
         UserInfoMapper userInfoMapper = session.getMapper(UserInfoMapper.class);
 
-        UserInfo userInfo = userInfoMapper.getUserAndBlogArticle();
-        System.out.println(userInfo);
-
+        ArrayList<UserInfo> userAndBlogArticle = userInfoMapper.selectUserAndBlogArticle();
+        for (UserInfo userInfo:userAndBlogArticle) {
+            System.out.println(userInfo);
+        }
     }
 
 

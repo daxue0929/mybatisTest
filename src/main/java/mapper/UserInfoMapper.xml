@@ -3,18 +3,17 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.UserInfoMapper">
+
     <select id="selectUserAndBlogArticle" resultMap="UserAndBlogArticle">
-        SELECT u.userId, userName, userPassword, addTime, groupId, glod,
-        ba.article_id, article_title, user_id, article_content, article_date
+        SELECT u.userId, u.userName, u.userPassword, u.addTime, u.groupId, u.glod,
+        ba.article_id, ba.article_title, ba.user_id, ba.article_content, ba.article_date
         from user u LEFT JOIN blog_article ba
         on u.userId = ba.user_id
     </select>
 
-
-    <resultMap id="getUserAndBlogArticle" type="dao.UserInfo">
+    <resultMap id="UserAndBlogArticle" type="dao.UserInfo">
         <!--<association property="user" javaType="entity.User" resultMap="user" />-->
         <!--<association property="blogArticle" javaType="entity.BlogArticle" resultMap="blogArticle" />-->
-
         <association property="user" javaType="entity.User">
             <id property="userId" column="userId" />
             <id property="userName" column="userName" />
@@ -31,6 +30,7 @@
             <id property="articleDate" column="article_date" />
         </association>
     </resultMap>
+
 
     <resultMap id="user" type="entity.User">
         <id property="userId" column="userId" />
