@@ -1,6 +1,8 @@
 package mapper;
 
 import entity.User;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,5 +17,8 @@ public interface UserMapper {
 
     //通过用户组名,查询该用户组下有哪些用户
     public ArrayList<User> selectUserByGroupName(String groupName);
+
+    @Select("select * from user where ${column} = #{value}")
+    public User selectUserByColumn(@Param("column") String column,@Param("value") String value);
 
 }
