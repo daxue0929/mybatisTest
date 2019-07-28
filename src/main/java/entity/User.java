@@ -4,11 +4,21 @@ import java.util.Date;
 
 public class User {
     private Integer userId;
+
     private String userName;
     private String userPassword;
     private Date addTime;
     private Integer groupId;
     private Integer glod;
+
+    public User(Integer userId, String userName, String userPassword, Date addTime, Integer groupId, Integer glod) {
+        this.userId = userId;
+        this.userName = userName;
+        this.userPassword = userPassword;
+        this.addTime = addTime;
+        this.groupId = groupId;
+        this.glod = glod;
+    }
 
     @Override
     public String toString() {
@@ -36,6 +46,9 @@ public class User {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public User() {
     }
 
     public String getUserPassword() {

@@ -3,21 +3,51 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.UserMapper">
+
+
     <select id="selectUser" parameterType="int" resultMap="user">
       select * from user where userId=#{id}
     </select>
 
+
+    <!--参数: 用户名       userName
+        返回类型: HashMap
+    -->
     <select id="selectUserByUserName" parameterType="String" resultType="HashMap">
         SELECT * FROM user WHERE userName=#{name}
     </select>
+
 
     <!--参数:         用户组name
         返回结果:     该用户组下的所有用户-->
     <select id="selectUserByGroupName" parameterType="String" resultType="HashMap">
         SELECT * FROM user WHERE groupId in (
-        SELECT groupId FROM user_group WHERE groupName=#{groupName}
+          SELECT groupId FROM user_group WHERE groupName=#{groupName}
         )
     </select>
+
+
+    <!--参数:     user(User)
+
+    -->
+    <insert id="insert" parameterType="entity.User" useGeneratedKeys="true" keyProperty="userId">
+      INSERT INTO user(userName, userPassword, addTime, groupId, glod)
+      VALUES (#{userName},#{userPassword},#{addTime},#{groupId},#{glod})
+    </insert>
+
+    <!--
+        参数: userId
+
+    -->
+    <delete id="deleteById" parameterType="int" >
+        DELETE FROM user WHERE user.userId = #{userId}
+    </delete>
+
+    <update id="updateById" parameterType="entity.User" useGeneratedKeys="true" keyProperty="userId">
+        UPDATE user SET
+        userName=#{userName},userPassword=#{userPassword},addTime=#{addTime},groupId=#{groupId},glod=#{glod}
+        WHERE userId=#{userId}
+    </update>
 
     <resultMap id="user" type="entity.User">
         <id property="userId" column="userId" />

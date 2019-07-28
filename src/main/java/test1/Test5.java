@@ -20,6 +20,5 @@ public class Test5 {
          */
         User user = userMapper.selectUserByColumn("userName", "大雪");
         System.out.println(user);
-
     }
 }
