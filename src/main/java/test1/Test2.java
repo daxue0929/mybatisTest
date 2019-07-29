@@ -3,15 +3,12 @@ package test1;
 
 import entity.User;
 import mapper.UserMapper;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
 import util.RandomUtil;
 import util.SqlSessionFactoryUtil;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -25,23 +22,23 @@ public class Test2 {
         userMapper = SqlSessionFactoryUtil.getInstance().openSession(true).getMapper(UserMapper.class);
     }
 
-    public static void main(String[] args) {
-
-        SqlSessionFactory sqlSessionFactory = SqlSessionFactoryUtil.getInstance();
-        SqlSession session = sqlSessionFactory.openSession();
-
-        UserMapper userMapper = session.getMapper(UserMapper.class);
-        HashMap hashMap = userMapper.selectUserByUserName("大雪");
-
-        System.out.println(hashMap);
-        System.out.println("-------------");
-
-        ArrayList userArr = userMapper.selectUserByGroupName("普通用户");
-        for (Object userItem : userArr) {
-            System.out.println(userItem);
-        }
-
-    }
+//    public static void main(String[] args) {
+////
+////        SqlSessionFactory sqlSessionFactory = SqlSessionFactoryUtil.getInstance();
+////        SqlSession session = sqlSessionFactory.openSession();
+////
+////        UserMapper userMapper = session.getMapper(UserMapper.class);
+////        HashMap hashMap = userMapper.selectUserByUserName("大雪");
+////
+////        System.out.println(hashMap);
+////        System.out.println("-------------");
+////
+////        ArrayList userArr = userMapper.selectUserByGroupName("普通用户");
+////        for (Object userItem : userArr) {
+////            System.out.println(userItem);
+////        }
+////
+////    }
 
     @Test
     public void addUser() {
@@ -100,5 +97,20 @@ public class Test2 {
 
     }
 
+
+    String  str = new String("good");
+    char[]  ch= {'a','d','c'};
+
+    public static void main(String args[]){
+        Test2 ex=new Test2();
+        ex.change(ex.str,ex.ch);
+        System.out.println(ex.str+"and");
+        System.out.println(ex.ch);
+
+    }
+    public static void change(String str ,char ch[] ) {
+        str = "test ok";
+        ch[1]='g';
+    }
 
 }
