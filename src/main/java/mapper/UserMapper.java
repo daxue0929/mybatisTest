@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Select;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public interface UserMapper{
 
@@ -21,10 +22,14 @@ public interface UserMapper{
     @Select("select * from user where ${column} = #{value}")
     User selectUserByColumn(@Param("column") String column, @Param("value") String value);
 
+    List<User> selectUserByLikeName(@Param("likeName") String likeName);
+
     //添加一个用户  .添加成功返回1
     void insert(User user);
 
     void deleteById(int userId);
 
     void updateById(User user);
+
+
 }

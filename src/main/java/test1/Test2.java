@@ -40,20 +40,18 @@ public class Test2 {
 ////
 ////    }
 
+    /**
+     * 批量增加100个测试用户
+     */
     @Test
     public void addUser() {
-
-        User user = new User(null, "test" + RandomUtil.getInstance(10000), "123456", new Date(), 7, RandomUtil.getInstance(100));
-
-//        SqlSessionFactory sqlSessionFactory = SqlSessionFactoryUtil.getInstance();
-//        SqlSession session = sqlSessionFactory.openSession();
-//
-//        UserMapper userMapper = session.getMapper(UserMapper.class);
-
-        userMapper.insert(user);
-//        session.commit();
-
-
+        int i =0;
+        while (i < 100){
+            User user = new User(null, "test" + RandomUtil.getInstance(10000), "123456", new Date(), RandomUtil.getInstance(8), RandomUtil.getInstance(100));
+            userMapper.insert(user);
+            i++;
+            System.out.println("------------------------------------------------------------");
+        }
     }
 
     @Test
@@ -62,7 +60,7 @@ public class Test2 {
          * openSession(true)   自动提交
          */
         UserMapper userMapper = SqlSessionFactoryUtil.getInstance().openSession(true).getMapper(UserMapper.class);
-        userMapper.deleteById(1008);
+        userMapper.deleteById(1013);
 
     }
 
@@ -78,6 +76,12 @@ public class Test2 {
 
     }
 
+    @Test
+    public void testSelectByLikeName(){
+        List<User> userList = userMapper.selectUserByLikeName("雪");
+        System.out.println(userList);
+    }
+    
     @Test
     public void Test001() {
         List<Integer> list = new ArrayList<Integer>();

@@ -26,20 +26,37 @@
         )
     </select>
 
+    <!--
+        参数: likeName
+        返回类型: User
+        描述:  通过用户名中关键字  模糊查询
 
-    <!--参数:     user(User)
+        ${} : 表示拼接sql串,将接收到的参数的内容不加任何修饰的拼接在sql中  注意: 使用${}拼接,引起sql注入
+        ${value}:接收输入参数的内容,如果传入参数是简单类型,${} 中只能使用value
 
     -->
+    <select id="selectUserByLikeName" parameterType="java.lang.String" resultType="entity.User">
+        SELECT * FROM user WHERE userName LIKE '%${likeName}%'
+    </select>
+
+
+    <!--参数:     user(User)
+        自增主键的返回 selectKey
+    -->
     <insert id="insert" parameterType="entity.User" useGeneratedKeys="true" keyProperty="userId">
-      INSERT INTO user(userName, userPassword, addTime, groupId, glod)
-      VALUES (#{userName},#{userPassword},#{addTime},#{groupId},#{glod})
+
+        <selectKey keyProperty="userId" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO user(userName, userPassword, addTime, groupId, glod)
+        VALUES (#{userName},#{userPassword},#{addTime},#{groupId},#{glod})
     </insert>
 
     <!--
         参数: userId
 
     -->
-    <delete id="deleteById" parameterType="int" >
+    <delete id="deleteById" parameterType="int">
         DELETE FROM user WHERE user.userId = #{userId}
     </delete>
 
@@ -50,12 +67,12 @@
     </update>
 
     <resultMap id="user" type="entity.User">
-        <id property="userId" column="userId" />
-        <id property="userName" column="userName" />
-        <id property="userPassword" column="userPassword" />
-        <id property="addTime" column="addTime" />
-        <id property="groupId" column="groupId" />
-        <id property="glod" column="glod" />
+        <id property="userId" column="userId"/>
+        <id property="userName" column="userName"/>
+        <id property="userPassword" column="userPassword"/>
+        <id property="addTime" column="addTime"/>
+        <id property="groupId" column="groupId"/>
+        <id property="glod" column="glod"/>
     </resultMap>
 
     <!--<resultMap id="UserResultMap" type="entity.User">-->
