@@ -13,4 +13,10 @@ public class Test6 {
 
         System.out.println(jedis.get("1"));
     }
+
+
+
+
+    
+    
 }
